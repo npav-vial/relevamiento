@@ -1,0 +1,95 @@
+RELEVAMIENTO DE ACCIDENTE VIAL — VERSIÓN INSTALABLE (v3.25)
+=============================================================
+
+QUÉ HAY EN ESTA CARPETA
+-----------------------
+index.html             La app (la misma v3.25, con lo necesario para instalarse).
+manifest.webmanifest   Le dice al celular el nombre, los colores y el ícono de la app.
+sw.js                  Guarda la app en el celular para que abra y funcione sin señal.
+iconos/                El ícono del triángulo con la ruta y la lupa, en todos los tamaños.
+LEEME.txt              Esta guía (no hace falta subirla, pero no molesta).
+
+Importante: los archivos tienen que quedar así, todos juntos y con la carpeta "iconos".
+No les cambies el nombre.
+
+
+PASO 1 — CREAR LA CUENTA EN GITHUB (una sola vez)
+-------------------------------------------------
+1. Entrá a https://github.com desde la computadora y tocá "Sign up".
+2. Poné tu mail, una contraseña y un nombre de usuario.
+   El nombre de usuario va a formar parte del link de la app
+   (por ejemplo, si elegís "npav-vial", el link será https://npav-vial.github.io/relevamiento/).
+   Elegí algo profesional y corto.
+3. Confirmá el mail. El plan gratuito ("Free") alcanza.
+
+
+PASO 2 — CREAR EL "REPOSITORIO" (la carpeta en GitHub)
+------------------------------------------------------
+1. Arriba a la derecha, tocá el "+" y elegí "New repository".
+2. En "Repository name" escribí:  relevamiento
+3. Dejalo en "Public" (con el plan gratuito, GitHub Pages solo funciona en públicos).
+4. Tocá "Create repository".
+
+
+PASO 3 — SUBIR LOS ARCHIVOS
+---------------------------
+1. En la página del repositorio recién creado, tocá el enlace "uploading an existing file".
+2. Descomprimí el ZIP en tu computadora. Abrí la carpeta "relevamiento" y ARRASTRÁ
+   TODO SU CONTENIDO (index.html, manifest.webmanifest, sw.js y la carpeta iconos)
+   al recuadro de GitHub. Ojo: arrastrá lo que está ADENTRO de la carpeta, no la carpeta.
+3. Esperá a que terminen de cargar todos (index.html tarda un poco, pesa ~700 KB).
+4. Abajo, tocá el botón verde "Commit changes".
+
+
+PASO 4 — ACTIVAR GITHUB PAGES
+-----------------------------
+1. En el repositorio, tocá "Settings" (la ruedita, arriba).
+2. En el menú de la izquierda, tocá "Pages".
+3. En "Build and deployment" > "Source", elegí "Deploy from a branch".
+4. En "Branch", elegí "main" y la carpeta "/ (root)". Tocá "Save".
+5. Esperá 1 o 2 minutos y recargá la página: arriba va a aparecer
+   "Your site is live at https://TU-USUARIO.github.io/relevamiento/"
+   Ese es el link de la app.
+
+
+PASO 5 — INSTALARLA EN EL CELULAR
+---------------------------------
+ANDROID (Chrome):
+  Abrí el link. En la pantalla de inicio de la app aparece un recuadro azul
+  "Instalá la app en este celular" con el botón "Instalar". Tocalo.
+  (Si no aparece: menú de los tres puntitos > "Instalar app" o "Agregar a pantalla principal".)
+
+iPHONE (tiene que ser Safari):
+  Abrí el link. Tocá "Compartir" (el cuadrado con la flecha hacia arriba)
+  y elegí "Agregar a pantalla de inicio".
+
+Después de instalarla, abrila UNA VEZ con señal: ahí se termina de guardar todo
+(mapa, visor 3D). Desde entonces abre también sin señal.
+
+
+QUÉ FUNCIONA SIN SEÑAL Y QUÉ NO
+-------------------------------
+Funciona:  todo el formulario, el visor 3D, las señales, el autoguardado y el PDF.
+Mapa:      se ven las zonas que ya se miraron con señal (guarda hasta ~600 "baldosas").
+           Una zona nueva no se ve hasta tener señal; el GPS igual toma las coordenadas.
+No funciona: la "Dirección detectada" (necesita internet para buscarla).
+
+
+CÓMO ACTUALIZAR LA APP MÁS ADELANTE
+-----------------------------------
+1. Subí el index.html nuevo al repositorio (Add file > Upload files) y "Commit changes".
+2. Abrí sw.js en GitHub (tocá el lápiz para editar) y cambiá el número de la línea
+       const VERSION = 'v3.25-1';
+   por uno nuevo, por ejemplo 'v3.26-1'. Guardá con "Commit changes".
+3. Los celulares reciben la versión nueva la próxima vez que abren la app con señal.
+
+
+PARA TENER EN CUENTA
+--------------------
+• Los datos que se cargan NO se suben a GitHub ni a ningún servidor: quedan en el celular.
+  GitHub solo guarda la app vacía.
+• Los relevamientos sin terminar que tengas guardados en la versión anterior
+  (abierta como archivo) NO pasan a la versión instalada: terminalos y generá el PDF antes.
+• Que el repositorio sea público significa que cualquiera puede ver el código. Pero eso
+  pasa con cualquier página web (el navegador siempre puede mostrar el código). Tu
+  protección es el registro en la DNDA, no esconder el archivo.
