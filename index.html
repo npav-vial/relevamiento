@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Relevamiento de Accidente Vial</title>
+<title>RELEVIAL — Relevamiento de Accidente Vial</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#185FA5">
 <link rel="icon" type="image/png" sizes="32x32" href="iconos/favicon-32.png">
 <link rel="apple-touch-icon" href="iconos/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Relevamiento">
+<meta name="apple-mobile-web-app-title" content="RELEVIAL">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -246,7 +246,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 <div class="topbar">
   <div class="topbar-left">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2"><path d="M19 17H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14l2 4v4a2 2 0 0 1-2 2z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-    <div><h1>Relevamiento Accidente Vial</h1><small id="sheet-lbl">Inicio</small> <small id="save-ind"></small></div>
+    <div><h1>RELEVIAL</h1><small id="sheet-lbl">Inicio</small> <small id="save-ind"></small></div>
   </div>
   <div style="display:flex;gap:6px"><button class="btn-pdf" id="btn-nuevo" style="display:none;background:#fff;color:#993C1D;border:1.5px solid #993C1D" onclick="nuevoRelevamiento()">🗑 Nuevo</button><button class="btn-pdf" onclick="abrirPDF()">⬇ PDF</button></div>
 </div>
@@ -2854,7 +2854,7 @@ ${im.det?`<div class="p-f" style="flex:2"><div class="p-fl">Detalle</div><div cl
 function imprimirPDF() {
   const content = document.getElementById('pdf-prev').innerHTML;
   const win = window.open('','_blank');
-  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Relevamiento Accidente Vial</title>
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>RELEVIAL — Relevamiento Accidente Vial</title>
 <style>*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif;}body{padding:16px;font-size:11px;color:#111;}
 .p-h1{text-align:center;font-size:14px;font-weight:700;border-bottom:2px solid #185FA5;padding-bottom:6px;margin-bottom:8px;}
 .p-sub{text-align:center;font-size:10px;color:#888;margin-bottom:10px;}
