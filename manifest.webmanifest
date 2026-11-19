@@ -1,6 +1,6 @@
 {
-  "name": "RELEVIAL — Relevamiento de Accidente Vial",
-  "short_name": "RELEVIAL",
+  "name": "ESCEVIAL — Relevamiento de Accidente Vial",
+  "short_name": "ESCEVIAL",
   "description": "Relevamiento pericial de siniestros viales en el lugar del hecho.",
   "lang": "es-AR",
   "start_url": "./",

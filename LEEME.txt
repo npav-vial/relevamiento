@@ -1,9 +1,9 @@
-RELEVAMIENTO DE ACCIDENTE VIAL — VERSIÓN INSTALABLE (v3.25)
+ESCEVIAL — RELEVAMIENTO DE ACCIDENTE VIAL — VERSIÓN INSTALABLE (v3.26)
 =============================================================
 
 QUÉ HAY EN ESTA CARPETA
 -----------------------
-index.html             La app (la misma v3.25, con lo necesario para instalarse).
+index.html             La app (v3.26, con lo necesario para instalarse).
 manifest.webmanifest   Le dice al celular el nombre, los colores y el ícono de la app.
 sw.js                  Guarda la app en el celular para que abra y funcione sin señal.
 iconos/                El ícono del triángulo con la ruta y la lupa, en todos los tamaños.
@@ -79,8 +79,8 @@ CÓMO ACTUALIZAR LA APP MÁS ADELANTE
 -----------------------------------
 1. Subí el index.html nuevo al repositorio (Add file > Upload files) y "Commit changes".
 2. Abrí sw.js en GitHub (tocá el lápiz para editar) y cambiá el número de la línea
-       const VERSION = 'v3.25-1';
-   por uno nuevo, por ejemplo 'v3.26-1'. Guardá con "Commit changes".
+       const VERSION = 'v3.26-1';
+   por uno nuevo, por ejemplo 'v3.27-1'. Guardá con "Commit changes".
 3. Los celulares reciben la versión nueva la próxima vez que abren la app con señal.
 
 
