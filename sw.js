@@ -1,6 +1,6 @@
 // Service worker: guarda la app en el celular para que abra y funcione sin señal.
 // Al publicar una versión nueva de la app, subí el número de VERSION para que los celulares la actualicen.
-const VERSION = 'v3.26-1';
+const VERSION = 'v3.26-2';
 const APP = 'relev-app-' + VERSION;      // la app y sus librerías
 const MAPA = 'relev-mapa';               // baldosas del mapa ya vistas (se conservan entre versiones)
 const MAX_BALDOSAS = 600;
