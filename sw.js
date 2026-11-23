@@ -1,6 +1,8 @@
 // Service worker: guarda la app en el celular para que abra y funcione sin señal.
 // Al publicar una versión nueva de la app, subí el número de VERSION para que los celulares la actualicen.
-const VERSION = 'v3.26-2';
+// v3.27-1: cada página se guarda con su propio nombre (index.html = NPAV; la versión académica DEMO aparte),
+//          así una no reemplaza a la otra cuando no hay señal.
+const VERSION = 'v3.27-1';
 const APP = 'relev-app-' + VERSION;      // la app y sus librerías
 const MAPA = 'relev-mapa';               // baldosas del mapa ya vistas (se conservan entre versiones)
 const MAX_BALDOSAS = 600;
@@ -15,6 +17,11 @@ const ARCHIVOS_APP = [
   './iconos/apple-touch-icon.png',
   './iconos/favicon-32.png'
 ];
+// Otras páginas del sitio que también se guardan para usar sin señal.
+// Si alguna no existe, la instalación sigue igual.
+const PAGINAS_EXTRA = [
+  './ESCEVIAL_DEMO_academico_v3_27_sin_sello.html'
+];
 const LIBRERIAS = [
   'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
@@ -25,7 +32,8 @@ self.addEventListener('install', e => {
   e.waitUntil((async () => {
     const c = await caches.open(APP);
     await c.addAll(ARCHIVOS_APP);
-    // Las librerías se guardan una por una: si alguna falla, la app igual se instala
+    // Las páginas extra y las librerías se guardan una por una: si alguna falla, la app igual se instala
+    await Promise.all(PAGINAS_EXTRA.map(u => c.add(u).catch(() => {})));
     await Promise.all(LIBRERIAS.map(u => c.add(new Request(u, {mode: 'cors'})).catch(() => {})));
     await self.skipWaiting();
   })());
@@ -45,6 +53,14 @@ async function recortarMapa() {
   for (let i = 0; i < ks.length - MAX_BALDOSAS; i++) await c.delete(ks[i]);
 }
 
+// Nombre con el que se guarda cada página: la raíz del sitio es index.html; las demás, con su propio nombre
+function clavePagina(url) {
+  const u = new URL(url);
+  u.search = ''; u.hash = '';
+  if (u.pathname.endsWith('/')) u.pathname += 'index.html';
+  return u.href;
+}
+
 self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
@@ -53,16 +69,21 @@ self.addEventListener('fetch', e => {
   // Búsqueda de dirección (Nominatim): siempre por internet, nunca se guarda
   if (url.hostname.includes('nominatim')) return;
 
-  // La app: primero internet (para recibir actualizaciones), si no hay señal, la copia guardada
+  // Páginas de la app: primero internet (para recibir actualizaciones), si no hay señal, la copia guardada DE ESA MISMA página
   if (req.mode === 'navigate') {
+    const clave = clavePagina(req.url);
     e.respondWith((async () => {
       try {
         const r = await fetch(req);
-        const c = await caches.open(APP);
-        c.put('./index.html', r.clone());
+        if (r.ok) {
+          const c = await caches.open(APP);
+          c.put(clave, r.clone());
+        }
         return r;
       } catch (_) {
-        return (await caches.match('./index.html', {ignoreSearch: true})) || (await caches.match('./'));
+        return (await caches.match(clave, {ignoreSearch: true}))
+            || (await caches.match('./index.html', {ignoreSearch: true}))
+            || (await caches.match('./'));
       }
     })());
     return;
